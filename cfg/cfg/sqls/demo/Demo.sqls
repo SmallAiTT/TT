@@ -1,0 +1,4 @@
+/* Curd_Q */
+select * from 
+(select * from D_CURD where code != @neCode) t
+$condition 

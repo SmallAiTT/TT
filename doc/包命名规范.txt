@@ -1,0 +1,34 @@
+分两部分：代码以及配置文件。
+
+代码：
+com.tt
+com.tt.pub	->公用模块的根，一些跟具体项目无关的，可以公用的内容都放次，最终目的在于今后可以快速构建自己的工程（做到可以通过打成jar包方式）
+com.tt.pub.consts	->公用的常量包，放系统常量
+com.tt.pub.exception	->自定义异常
+com.tt.pub.map	->自定义map
+com.tt.pub.msg	->消息提示统一处理
+com.tt.pub.utils	->系统工具包
+
+com.tt.*	->系统模块，如user
+com.tt.*.ctrl	->control层
+com.tt.*.service	->服务层
+com.tt.*.iface	->公用接口
+com.tt.*.po	->
+com.tt.*.vo	->与前台交互数据类，并非一定要有，当po等不能满足时才需要构建
+com.tt.*.const	->该模块常量包
+
+配置：
+cfg	->系统配置资源包
+cfg.ioc	->ioc相关配置包
+cfg.sys	->系统级配置包
+cfg.msg	->提示信息配置包
+cfg.sqls->自定义sql配置包
+
+
+
+目前，系统的src文件夹如下：
+pub
+cfg
+demo
+pvl		权限
+user	用户

@@ -1,0 +1,9 @@
+1、统一为以下形式：
+var Test = {
+	field01 : "Value",
+	func01 : function(){}
+};
+其中Test为模块的名称。
+2、变量命名必须为开头小写的驼峰式命名规范如：testName
+3、全局变量的命名统一为：g_***，例如：g_testName
+4、私有变量的命名统一为：_***，例如：_testName

@@ -1,0 +1,60 @@
+/* 按照角色查询权限 */
+/* PvlWithRole_Q */
+select * from T_Pvl
+where id in (
+	select distinct pvlId from T_RolePvlRlt 
+	where roleId = @roleId
+)
+$condition
+
+/* 按照用户查询权限(加type关联) */
+/* PvlWithUser_Q */
+select * from T_Pvl
+where id in(
+	select distinct pvlId from T_RolePvlRlt 
+	where roleId in (
+		select roleId from T_UserRoleRlt
+		where userId = @userId
+	)
+)
+$condition
+
+/* 按照角色查询权限(加type关联) */
+/* PvlWithRole1_Q */
+select * from T_Pvl
+where id in(
+	select distinct pvlId from T_RolePvlRlt 
+	where roleId = @roleId
+)
+and type = @type
+order by module asc, code asc
+
+/* 按照用户查询权限(加type关联) */
+/* PvlWithUser1_Q */
+select * from T_Pvl
+where id in(
+	select distinct pvlId from T_RolePvlRlt 
+	where roleId in (
+		select roleId from T_UserRoleRlt
+		where userId = @userId
+	)
+)
+and type = @type
+order by module asc, code asc
+
+/* 根据用户ID查询出其拥有的角色 */
+/* RoleWithUser_Q */
+select * from 
+(select * from T_Role
+	where id in(
+		select distinct roleId from T_UserRoleRlt
+		where userId = @userId
+	)) t
+$condition
+
+
+
+/* BindPvls4Role */
+insert into T_RolePvlRlt
+(roleId, pvlId, type)
+(select @roleId roleId, id pvlId, type @type from t_pvl where code in ( $codes ))

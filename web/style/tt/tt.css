@@ -1,0 +1,19 @@
+body{
+	background-image: url(../../img/tt/bg.jpg);
+	background-size:cover;
+	height:99%;
+	width:99%; 
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../img/tt/bg.jpg', sizingMethod='scale');
+}
+.tt-head{
+	height : 50px;
+}
+#main{
+	position:absolute; 
+	top:50%; 
+	left:50%; 
+	width:420px; 
+	height:250px; 
+	margin：-125px 0 0 -210px; 
+	background：#ffc;
+}
