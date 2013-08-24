@@ -8,7 +8,6 @@ import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 
-import com.tt.pub.consts.PubConst;
 import com.tt.pub.map.TCache;
 import com.tt.pub.map.TMap;
 import com.tt.pvl.consts.PvlConst;
@@ -67,7 +66,6 @@ public class LoginCtrl {
 		loginInfo.setUserId(userId);												//用户账号
 		loginInfo.setUserName(userName);											//用户名
 		loginInfo.setLoginTime(new Date());											//登录时间
-		loginInfo.setIsLogined(PubConst.TF_T);										//已登录
 		loginInfo.setIp(req.getRemoteHost());										//登录者IP
 		loginInfo.setMenus(pvlService.getByUser(userId, PvlConst.PVL_TYPE_MENU));	//菜单权限
 		loginInfo.setUrls(pvlService.getByUser(userId, PvlConst.PVL_TYPE_URL));		//url权限

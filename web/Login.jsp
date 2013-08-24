@@ -28,13 +28,13 @@
 						<fieldset>
 							<div class="input-prepend" title="员工号" data-rel="tooltip">
 								<span class="add-on"><i class="icon-user"></i></span>
-								<input autofocus class="input-large span10" name="userId" type="text" value="admin" />
+								<input autofocus class="input-large span10" name="userId" type="text" value="1111" />
 							</div>
 							<div class="clearfix"></div>
 
 							<div class="input-prepend" title="密码" data-rel="tooltip">
 								<span class="add-on"><i class="icon-lock"></i></span>
-								<input class="input-large span10" name="password" type="password" value="111111" />
+								<input class="input-large span10" name="password" type="password" value="1111" />
 							</div>
 						</fieldset>
 					</form>
