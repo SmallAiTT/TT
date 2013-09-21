@@ -123,4 +123,13 @@ public final class TUtils {
 		return (E)val;
 	}
 	
+	public static String fmtPre(String srcStr, String tempStr){
+		if(srcStr == null || tempStr == null 
+				|| tempStr.length() == srcStr.length()) return srcStr;
+		if(tempStr.length() < srcStr.length()) return srcStr.substring(0, tempStr.length());
+		StringBuffer sb = new StringBuffer();
+		sb.append(tempStr.substring(0, tempStr.length() - srcStr.length())).append(srcStr);
+		return sb.toString();
+	}
+	
 }
