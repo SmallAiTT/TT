@@ -62,6 +62,7 @@ public class QryObj {
 	/**  */
 	private TMap data = new TMap();
 	private TMap ignore = new TMap();
+	private TMap replaceData = new TMap();
 	private String paraExp = "";
 	private String varExp = "";
 	private String cndExp = "";
@@ -124,6 +125,12 @@ public class QryObj {
 		this.page = page;
 	}
 	
+	public TMap getReplaceData() {
+		return replaceData;
+	}
+	public void setReplaceData(TMap replaceData) {
+		this.replaceData = replaceData;
+	}
 	public void setPageInfo(int page, int rows){
 		this.page = page;
 		this.rows = rows;
@@ -147,7 +154,8 @@ public class QryObj {
 			//值为空，并且要忽略（默认）
 			if((data.get(col) == null || Strings.isEmpty(data.getStr(col)))
 					&& (ignore.get(col) == null || "".equals(ignore.getStr(col)))) continue;
-			c.and(col, conditioin, dataMap.getStr(col));
+			String key = TUtils.getValByDef(this.replaceData.getStr(col), col);
+			c.and(key, conditioin, dataMap.getStr(col));
 		}
 		String sortExp = TUtils.getValByDef(sort, defSort);
 		if(!Strings.isEmpty(sortExp)){//排序

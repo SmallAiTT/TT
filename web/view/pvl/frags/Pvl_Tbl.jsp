@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <table class="tt-tbl" rownumbers="true" singleSelect="true" pagination="true" 
-	btnExps="c:jq->$[dlgId];u|r:jq->$[dlgId]?*;d:act->pvl/PvlCtrl/delete"
+	btnExps="c:jq->$[dlgId];u|r:jq->$[dlgId]?*;d:act->pvl/PvlCtrl/delete?id"
 	titles="q:权限列表"
 	acts="q:pvl/PvlCtrl/query"
 	

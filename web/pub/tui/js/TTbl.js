@@ -134,6 +134,9 @@ function TTbl(jqObj, opts){
 		$.each(qrySgl.ignore, function(k, v){
 			if(!$tt.isEmpty(k)) req.data["_qry.ignore." + k] = v;
 		});
+		$.each(qrySgl.replaceData, function(k, v){
+			if(!$tt.isEmpty(k)) req.data["_qry.replaceData." + k] = v;
+		});
 		req.data["_qry.cndExp"] = qrySgl.cndExp;
 		req.data["_qry.paraExp"] = qrySgl.paraExp;
 		req.data["_qry.varExp"] = qrySgl.varExp;

@@ -23,6 +23,7 @@ function TPaser(){
 		var _this = this;
 		_this.def = $tt.getValByDef(def, {});
 		$.each(_this.parseMap, function(k, v){
+			console.log(k);
 			_this.info[k] = $tt.parseAttr(jqObj, v, tmpArgs, _this.def[k]);
 			var _seq = _this.info[k]._seq;
 			if(_seq == null) return true;
@@ -361,6 +362,7 @@ function TQrySgl(){
 	this.varExp = "";
 	this.sort = "";
 	this.defSort = "";
+	this.replaceData = {};
 	
 	/**
 	 * Desc:根据请求初始化查询对象到请求中。
@@ -374,11 +376,15 @@ function TQrySgl(){
 		$.each(this.ignore, function(k, v){
 			if(!$tt.isEmpty(k)) req.data["_qry.ignore." + k] = v;
 		});
+		$.each(this.replaceData, function(k, v){
+			if(!$tt.isEmpty(k)) req.data["_qry.replaceData." + k] = v;
+		});
 		req.data["_qry.cndExp"] = this.cndExp;
 		req.data["_qry.paraExp"] = this.paraExp;
 		req.data["_qry.varExp"] = this.varExp;
 		req.data["_qry.sort"] = this.sort;
 		req.data["_qry.defSort"] = this.defSort;
+		req.data["_qry.replaceData"] = this.replaceData;
 	};
 }
 /**
@@ -391,12 +397,12 @@ function TQryParser(){
 	this.info = { 
 			datas : {}, ignores : {}, 
 			cndExps : {}, paraExps : {}, varExps : {}, 
-			sorts : {}, defSorts : {}
+			sorts : {}, defSorts : {}, replaceDatas : {}
 	};
 	this.parseMap = { 
 			datas : "qryDatas", ignores : "qryIgnores", 
 			cndExps : "qryCndExps",  paraExps : "qryParaExps", varExps : "qryVarExps", 
-			sorts : "qrySorts", defSorts : "qryDefSorts"
+			sorts : "qrySorts", defSorts : "qryDefSorts", replaceDatas : "replaceDatas"
 	};
 
 	/**
@@ -406,12 +412,15 @@ function TQryParser(){
 	this.onAfter = function(){
 		var dataTmp = {};
 		var ignoreTmp = {};
+		var replaceDataTmp = {};
 		$.each(_t.opers, function(k, v){
 			dataTmp[k] = $tt.parseArgs(_t.info.datas[k]);
 			ignoreTmp[k] = $tt.parseArgs(_t.info.ignores[k]);
+			replaceDataTmp[k] = $tt.parseArgs(_t.info.replaceDatas[k]);
 		});
 		_t.info.datas = dataTmp;
 		_t.info.ignores = ignoreTmp;
+		_t.info.replaceDatas = replaceDataTmp;
 	};
 	/**
 	 * @param {String} oper
@@ -425,6 +434,7 @@ function TQryParser(){
 		sgl.cnd = sgl.cnd == null ? {} : sgl.cnd;
 		sgl.transf = sgl.transf == null ? {} : sgl.transf;
 		sgl.ignore = sgl.ignore == null ? {} : sgl.ignore;
+		sgl.replaceData = sgl.replaceData == null ? {} : sgl.replaceData;
 		return sgl;
 	};
 }
